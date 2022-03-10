@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookeventComponent implements OnInit {
 
-  constructor() { }
-
+  constructor() { 
+    
+  }
+  p:any;
+  
+ 
   ngOnInit(): void {
   }
+  
 
 }

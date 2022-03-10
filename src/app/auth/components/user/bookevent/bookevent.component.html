@@ -1,23 +1,75 @@
 
 <app-nagivation></app-nagivation>
 <br><br><br>
-<div id="1" class="container">
-    <div class="row justify-content-center">
-<div class="col-6"><label><input type="text"></label></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="w-100"></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="w-100"></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="w-100"></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="w-100"></div>
-<div class="col-6"><label><input type="text"></label></div>
-<div class="col-6"><label><input type="text"></label></div>
-<br>
-<br>
+<div class="container">
+   
+   
+    <div id="st-box">
+        <h2>Applicant Details</h2>
+        <form>
+            <div class="form-group">
+            <label for="eventname"></label>
+                <input type="text" class="form-control"
+                id="eventName" placeholder="Name: SS birthday event">
+            </div>
+            <div class="form-group">
+            <label for="applicantname"></label>
+                <input type="text" class="form-control"
+                id="applicantName" placeholder="Enter applicant name">
+           </div>
+           <div class="form-group">
+            <label for="applicantaddress"></label>
+                <input type="text" class="form-control"
+            id="applicantAddress" placeholder="Enter applicant address">
+            </div>
+           <div class="form-group">
+            <label for="applicantMobileNo"></label>
+                <input type="tel" class="form-control"
+                id="applicantMobileNo" placeholder="Enter applicant mobile no">
+            </div>
+           <div class="form-group">
+            <label for="applicantemailid"></label>
+                <input type="text" class="form-control"
+                id="applicantEmailid" placeholder="Enter applicant email id">
+            </div>
+        </form>
+    </div>
+    <div id="nd-box">
+        <form>
+           <div class="form-group">
+               <label for="applicantemailid"></label>
+                <input type="text" class="form-control"
+                id="eventAddress" placeholder="Address:Coimbatore">
+            </div>
+            <div class="form-group"><label for="noofpeople"></label>
+                <input type="tel" class="form-control"
+                id="noOfPeople" placeholder="Enter the number of people"></div>
+           <div class="form-group"><label>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </label></div>
+           <div class="form-group"><label>
+            <input type="time" id="input" class="form-control" value="13:00" mdbInput/>
+            <label for="input">Choose your time</label>
+          </label></div>
+           
+           
+        </form>
+          
+    </div>
+    
 </div>
-</div>
+
+
+  <footer class="footer">
+      <div class="row" >    
+        <div class="d-flex justify-content-center">
+            <a><button class="btn btn-dark" [routerLink]="['/user/bookTheme']">1</button></a>
+            
+            <a><button  class="btn btn-dark" [routerLink]="['/2']">2</button></a>
+            <a><button class="btn btn-danger"  [routerLink]="['/2']">Next-></button></a>
+            </div>        
+      </div>
+
+  </footer>

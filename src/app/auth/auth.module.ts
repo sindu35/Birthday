@@ -13,8 +13,16 @@ import { ViewbookeventComponent } from './components/user/viewbookevent/viewbook
 import { LogoutComponent } from './components/user/logout/logout.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import{MatIconModule} from '@angular/material/icon'
-@NgModule({
+import{MatIconModule} from '@angular/material/icon';
+import { FoodtypeComponent } from './components/user/foodtype/foodtype.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import{NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+@NgModule({ 
   declarations: [
     LoginComponent,
     SignupComponent,
@@ -22,7 +30,8 @@ import{MatIconModule} from '@angular/material/icon'
     NagivationComponent,
     BookeventComponent,
     ViewbookeventComponent,
-    LogoutComponent
+    LogoutComponent,
+    FoodtypeComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +39,14 @@ import{MatIconModule} from '@angular/material/icon'
     FormsModule,ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxPaginationModule,
+    MatFormFieldModule,
+    NgxMatTimepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatInputModule 
 
   ]
 })

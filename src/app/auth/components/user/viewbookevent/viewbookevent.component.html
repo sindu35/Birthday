@@ -1,2 +1,19 @@
 <p>viewbookevent works!</p>
 <app-nagivation></app-nagivation>
+<table class="table table-stripped table-responsive table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Event Name</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let event of events">
+            <td>{{event.eventName}}</td>
+            <td>{{event.eventTime}}</td>
+            <td>{{event.eventDate}}</td>
+        </tr>
+    </tbody>
+</table>
