@@ -8,22 +8,24 @@
 }
 #nd-box {
   float:left;
+  
+  width:550px;
+  height:280px;
   padding:5px;
-  width:560px;
-  height:270px;
   background-color:white; 
   border:solid black;
-  margin-left:20px;
+ 
 }
 
 .container {
  
-  width:1516px;
-  height:600px;
   background-color:rgb(104, 173, 230);
   padding-top:45px;
   padding-left:5px;
   padding-right:15px;
+}
+.container .row{
+  padding:52px;
 }
 input[type=text]:focus, input[type=password]:focus,input[type=email]:focus,input[type=tel]:focus,input[type=time]:focus{
   background-color: #ddd;
@@ -61,15 +63,65 @@ input[type=checkbox]{
 h2{
   padding:2px;
 }
-.spacer{
-  flex:1 1 auto;
-}
-.footer{
-  position:absolute;
-  bottom:0;
-  width:1320px;
-  height:60px;
-  background-color:blue ;
-  text-align: center;
-  color:white;
-}
+
+
+#nf-box {
+    float:left;
+    
+    width:550px;
+    height:360px;
+    padding:5px;
+    background-color:white; 
+    border:solid black;
+    
+  }
+  #ra-box {
+   float:right;
+   
+    width:300px;
+    height:220px;
+    padding:5px;
+    background-color:white;
+    border:solid black;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus,input[type=email]:focus,input[type=tel]:focus{
+    background-color: #ddd;
+    outline: none;
+  
+  }
+  input[type=text], input[type=password],input[type=email],input[type=tel]{
+    width: 97%;
+  padding: 7px;
+  margin: 5px 0 5px 0;
+  border-color: green;
+  background: #f1f1f1;
+  
+  }
+  input[type=checkbox]{
+    padding:10px;
+    float:right;
+    border-color: rgb(8, 15, 8);
+  
+  }
+  .btn{
+    padding:5px;
+    width:100px;
+    float:right;
+  }
+  #wd-box{
+    float:right;
+    width:1010px;
+    height:10px;
+    background-color:rgb(104, 173, 230);
+    border:rgb(104, 173, 230);
+    padding:50px;
+  }
+ 
+  
+  
+  
+  h2{
+    padding:2px;
+  }
+  

@@ -1,75 +1,128 @@
-
 <app-nagivation></app-nagivation>
 <br><br><br>
+<form [formGroup]="formValue">
 <div class="container">
+    <div class="row" >
    
    
-    <div id="st-box">
+    <div id="st-box" class="col col-5">
         <h2>Applicant Details</h2>
-        <form>
             <div class="form-group">
-            <label for="eventname"></label>
-                <input type="text" class="form-control"
-                id="eventName" placeholder="Name: SS birthday event">
+                <label for="eventname"></label>
+                <input type="text" class="form-control" id="eventName" placeholder="Name: SS birthday event" formControlName="eventName">
             </div>
             <div class="form-group">
             <label for="applicantname"></label>
                 <input type="text" class="form-control"
-                id="applicantName" placeholder="Enter applicant name">
+                id="applicantName" placeholder="Enter applicant name" formControlName="userName" >
            </div>
            <div class="form-group">
             <label for="applicantaddress"></label>
                 <input type="text" class="form-control"
-            id="applicantAddress" placeholder="Enter applicant address">
+            id="applicantAddress" placeholder="Enter applicant address" formControlName="userAddress">
             </div>
            <div class="form-group">
             <label for="applicantMobileNo"></label>
                 <input type="tel" class="form-control"
-                id="applicantMobileNo" placeholder="Enter applicant mobile no">
+                id="applicantMobileNo" placeholder="Enter applicant mobile no" formControlName="userMobilenumber">
             </div>
            <div class="form-group">
             <label for="applicantemailid"></label>
                 <input type="text" class="form-control"
-                id="applicantEmailid" placeholder="Enter applicant email id">
+                id="applicantEmailid" placeholder="Enter applicant email id" formControlName="userEmailId">
             </div>
-        </form>
+       
     </div>
-    <div id="nd-box">
-        <form>
+    <div class="col"></div>
+        <div id="nd-box" class="col col-5">
+        
            <div class="form-group">
                <label for="applicantemailid"></label>
                 <input type="text" class="form-control"
-                id="eventAddress" placeholder="Address:Coimbatore">
+                id="eventAddress" placeholder="Address:Coimbatore" formControlName="eventAddress">
             </div>
             <div class="form-group"><label for="noofpeople"></label>
                 <input type="tel" class="form-control"
                 id="noOfPeople" placeholder="Enter the number of people"></div>
-           <div class="form-group"><label>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" >
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker ></mat-datepicker>
-          </label></div>
-           <div class="form-group"><label>
-            <input type="time" id="input" class="form-control" value="13:00" mdbInput/>
-            <label for="input">Choose your time</label>
-          </label></div>
-           
-           
-        </form>
-          
-    </div>
+            <div class="form-group"><label>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+                </label>
+            </div>
+            <div class="form-group"><label>
+                <input type="time" id="input" name="appt"  class="form-control" min="09:00" max="18:00" required formControlName="eventTime">
+                <label for="input">Choose your time</label>
+                </label>
+            </div>     
+        </div>
     
+<div class="w-100"></div>
+<div class="row">
+    <div id="nf-box" class="col col-6">
+        <h2>Food Type</h2>
+            <div class="form-group">
+                    <label for="exampleInputEmail1"></label>
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Veg Items'"
+                            [settings]="dropdownSettings"
+                            [data]="v"
+  
+                            (onDeSelect)="onVegDeSelect($event)"
+                            [(ngModel)]="selectedItems"
+                            (onSelect)="onVegSelect($event)"
+                            (onSelectAll)="onVegSelectAll($event)"
+                            (onDeSelectAll)="onVegDeSelectAll($event)"
+  
+                            >
+                        </ng-multiselect-dropdown>
+            </div>
+         
+
+            <div class="form-group" >
+                <label for="exampleInputEmail1"></label>
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Non-Veg'"
+                            [settings]="dropdownSettings"
+                            [data]="n"
+
+                            (onDeSelect)="onNonVegDeSelect($event)"
+                            [(ngModel)]="selectedItems"
+                            (onSelect)="onNonvegSelect($event)"
+                            (onSelectAll)="onNonVegSelectAll($event)"
+                            (onDeSelectAll)="onNonVegDeSelectAll($event)"
+                        >
+                        </ng-multiselect-dropdown>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="quantityofveg"></label>
+                <input type="tel" class="form-control" id="quantityOfVeg" placeholder="Enter quantity of Veg items" formControlName="quantityVeg">
+            </div>
+            <div class="form-group"><label for="quantityofnonveg"></label>
+                <input type="tel" class="form-control" id="quantityOfNonVeg" placeholder="Enter quantity of Non Veg items" formControlName="quantityNonVeg">
+            </div>
+   
+    </div>
+
+    <div class="col"></div>
+    <div id="ra-box" class="col col-4 ">
+        <h2>Select Add ons</h2>
+            <div *ngFor='let add of a'>
+                <input type="checkbox" name="{{add.name}}" [value]="add.price" (change)="getaddons($event,add.price)">{{add.name }}-{{add.price | currency }}
+            </div>
+                                  
+    </div>
+    <div id="wd-box" class="col">
+        <button class="btn btn-primary" type="button" (click)="eventDetails()">Book Event</button>
+    </div>
+
 </div>
-
-
-  <footer class="footer">
-      <div class="row" >    
-        <div class="d-flex justify-content-center">
-            <a><button class="btn btn-dark" [routerLink]="['/user/bookTheme']">1</button></a>
-            
-            <a><button  class="btn btn-dark" [routerLink]="['/2']">2</button></a>
-            <a><button class="btn btn-danger"  [routerLink]="['/2']">Next-></button></a>
-            </div>        
-      </div>
-
-  </footer>
+</div>
+</div>
+</form>
+{{total}}
+{{vtotal}}
+{{nvtotal}}

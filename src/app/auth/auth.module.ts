@@ -14,14 +14,16 @@ import { LogoutComponent } from './components/user/logout/logout.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import{MatIconModule} from '@angular/material/icon';
-import { FoodtypeComponent } from './components/user/foodtype/foodtype.component';
+
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import{NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 @NgModule({ 
   declarations: [
     LoginComponent,
@@ -31,12 +33,13 @@ import{NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
     BookeventComponent,
     ViewbookeventComponent,
     LogoutComponent,
-    FoodtypeComponent
+   
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule,ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -46,7 +49,10 @@ import{NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
     MatDatepickerModule,
     MatNativeDateModule,
     NgMultiSelectDropDownModule.forRoot(),
-    MatInputModule 
+    MatInputModule ,
+    HttpClientModule,
+    MdbModalModule
+    
 
   ]
 })

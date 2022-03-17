@@ -3,60 +3,34 @@
 
 <div class="container">
 
-    <div class="boxone">
+    <div class="boxone ">
     
     <div id="search-box">
       <input type="search" class="form-control"
       id="Search" placeholder="Search here" >
-      <button id="SearchEventButton" class="btn btn-danger">Search</button>
+      <button id="SearchEventButton" class="btn btn-danger" (click)="search()">Search</button>
        
     </div>
     </div>
     
     
-     <div class="boxtwo">
-     
-      
-      <div id="ss-box">
-      
-        <div class="card">
-          <img src="https://www.fnp.com/images/pr/l/v20210623021338/blue-theme-birthday-balloon-decoration_1.jpg" class="card-img-top" alt="...">
-          <div class="con">
-            <div class="d-flex flex-column">
-            <h2 class="card-title">SS Birthday Events</h2>
-            <h3 class="card-text">Place:Coimbature</h3>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="#" role="button" [routerLink]="['/user/bookTheme']">Book</a>
-          </div>
-          </div>
-        </div>
-     </div>
-        
-      <div id="tt-box">
-        <div class="card">
-          <img src="https://i1.fnp.com/assets/images/custom//decoration-services/decoration-by-occasion/kids-decoration-19-march-2019.jpg" class="card-img-top" alt="...">
-          <div class="con">
-            <div class="d-flex flex-column">
-            <h2 class="card-title">KK Birthday Events</h2>
-            <h3 class="card-text">Place:Coimbature</h3>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="#" role="button"  [routerLink]="['/user/bookTheme']">Book</a>
+    <div class="boxtwo">
+          <div class="card" *ngFor="let card of cardlist">
+            <img src={{card.img}} class="card-img-top" alt="...">
+            <div class="con">
+              <div class="d-flex flex-column">
+                <h2 class="card-title">{{card.title}}</h2>
+                <h3 class="card-text">Place:{{card.address}}</h3>
+                <a class="btn btn-outline-success my-2 my-sm-0" id={{card.id}} role="button" (click) = book()>Book</a>
+              </div>
             </div>
           </div>
-          </div>
-      </div>
         
-      <div id="mm-box">
-        <div class="card">
-          <img src="https://www.fnp.com/images/pr/l/v20201221175318/minnie-mouse-theme-birthday-decor_1.jpg" class="card-img-top" alt="...">
-          <div class="con">
-            <div class="d-flex flex-column">
-            <h2 class="card-title">MM Birthday Events</h2>
-            <h3 class="card-text">Place:Coimbature</h3>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="#" role="button" [routerLink]="['/user/bookTheme']">Book</a>
-            </div>
-          </div>
-          </div>
+
     </div>
-    </div>
-    </div>
-    
+</div>
+
+
+
+   
     

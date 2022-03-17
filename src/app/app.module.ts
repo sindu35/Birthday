@@ -7,6 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +22,10 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    HttpClientModule,
+    MdbModalModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
