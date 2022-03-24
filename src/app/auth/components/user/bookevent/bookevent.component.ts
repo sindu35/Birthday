@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Events } from 'src/app/auth/classes/events';
 import { ApiService } from 'src/app/auth/services/api.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -51,9 +51,10 @@ export class BookeventComponent implements OnInit {
   d: addons[] = [];
   v: veg[]=[];
   n: nonveg[]=[];
+  selectedv:veg[]=[];
   nvtotal:number=0;
 vtotal:number=0;
-total:number=0;
+ total:number=0;
 quantityVeg:number=0;
 quantityNonVeg:number=0;
   dropdownSettings:IDropdownSettings={};
@@ -75,23 +76,24 @@ quantityNonVeg:number=0;
       allowSearchFilter: true
     };
     this.formValue=this.formbuilder.group({
-      eventName:[''],
-      userName:[''],
-      userAddress:[''],
-      userMobilenumber:[''],
-      userEmailId:[''],
-      eventAddress:[''],
-      eventDate:[''],
-      eventTime:[''],
-      quantityVeg:[''],
-      quantityNonVeg:['']
+      eventName:['',Validators.required],
+      userName:['',Validators.required],
+      userAddress:['',Validators.required],
+      userMobilenumber:['',Validators.required],
+      userEmailId:['',Validators.required],
+      eventAddress:['',Validators.required],
+
+      eventDate:['',Validators.required],
+      eventTime:['',Validators.required],
+      quantityVeg:['',Validators.required],
+      quantityNonVeg:['',Validators.required]
     })
      
   }
  
 
   eventDetails(){
-   
+   if(this.formValue.valid){
     this.ei.eventName=this.formValue.value.eventName;
     this.ei.userName=this.formValue.value.userName;
     this.ei.userAddress=this.formValue.value.userAddress;
@@ -104,8 +106,7 @@ quantityNonVeg:number=0;
     this.ei.quantityNonVeg=this.formValue.value.quantityNonVeg;
     this.ei.vtotal=this.vtotal;
     this.ei.nvtotal=this.nvtotal;
-    this.ei.total=this.total;
-    
+    this.ei.total=this.total+this.ei.gettotal(this.ei.quantityNonVeg,this.ei.quantityVeg,this.ei.nvtotal,this.ei.vtotal);
     this.api.bookevent(this.ei).subscribe(res=>{
       console.log(res);
       alert("event booked");
@@ -115,6 +116,11 @@ quantityNonVeg:number=0;
       alert("something went wrong");
     })
   }
+  else{
+  
+    alert("please enter all the details");
+  }
+}
    getadd()
    {
      return this.api.addon().subscribe(res=>{this.a=res});
@@ -171,7 +177,8 @@ quantityNonVeg:number=0;
   getaddons(e:any,price:number){
    if(e.target.checked){
    this.total=this.total+price;
-   console.log(this.total);
+
+   
      }
    else{
    
@@ -179,7 +186,9 @@ quantityNonVeg:number=0;
       }
   }
   
-    
+  get f(): { [key: string]: AbstractControl } {
+    return this.formValue.controls;
+  } 
   
 
 }

@@ -24,6 +24,8 @@ import { MatInputModule } from '@angular/material/input';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { EditComponent } from './components/user/edit/edit.component';
+import {MatDialog} from '@angular/material/dialog';
 @NgModule({ 
   declarations: [
     LoginComponent,
@@ -33,7 +35,8 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     BookeventComponent,
     ViewbookeventComponent,
     LogoutComponent,
-   
+    EditComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     NgMultiSelectDropDownModule.forRoot(),
     MatInputModule ,
     HttpClientModule,
-    MdbModalModule
+    MdbModalModule,
+
     
 
   ]

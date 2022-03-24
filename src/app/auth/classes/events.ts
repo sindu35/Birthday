@@ -13,6 +13,10 @@ export class Events {
     vtotal:number=0;
     nvtotal:number=0;
     total:number=0;
+    
+    gettotal(quantityNonVeg:number,quantityVeg:number,nvtotal:number,vtotal:number){
+     return  this.total+=this.quantityNonVeg*this.nvtotal+this.vtotal*this.quantityVeg;
+    }
 
    
    

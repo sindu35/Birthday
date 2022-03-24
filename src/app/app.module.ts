@@ -10,6 +10,7 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatDialog} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +26,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgxMatTimepickerModule,
     HttpClientModule,
     MdbModalModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

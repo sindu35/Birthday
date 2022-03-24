@@ -4,6 +4,8 @@ import { FormBuilder,FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/auth/services/api.service';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { EditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-viewbookevent',
   templateUrl: './viewbookevent.component.html',
@@ -12,7 +14,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 export class ViewbookeventComponent implements OnInit {
   events:Events =new Events();
   formValue !: FormGroup
-  constructor(private api:ApiService,public formbuilder:FormBuilder) { }
+  constructor(private api:ApiService,public formbuilder:FormBuilder,private dialog:MatDialog) { }
   ed !:any;
   ngOnInit(): void {
     this.formValue=this.formbuilder.group({
@@ -21,7 +23,7 @@ export class ViewbookeventComponent implements OnInit {
       eventTime:[''],
       eventDate:[''],
     })
-    this. getbookedDetails();
+   this. getbookedDetails();
   }
 
   getbookedDetails(){
@@ -37,24 +39,17 @@ export class ViewbookeventComponent implements OnInit {
   }
   onedit(row:any)
   {
-    this.ed.id=row.id;
-    this.formValue.controls['eventName'].setValue(row.eventName);
-    this.formValue.controls['eventDate'].setValue(row.eventDate);
-    this.formValue.controls['eventTime'].setValue(row.eventTime);
-    this.formValue.controls['eventAddress'].setValue(row.eventAddress);
-   
-  }
-  updateDetails(){
-    this.ed.eventName=this.formValue.value.eventName;
-    this.ed.eventAddress=this.formValue.value.eventAddress;
-    this.ed.eventDate=this.formValue.value.eventDate;
-    this.ed.eventTime=this.formValue.value.eventTime;
-    this.api.updateevent(this.ed,this.ed.id)
-    .subscribe(res=>{
-      alert("updated successfully");
-      
-    })
+    this.dialog.open(EditComponent,{
+      width:'30%',
+      data:row,
 
+    }).afterClosed().subscribe(val=>{
+      if(val==='update')
+      {
+        this. getbookedDetails();
+      }
+    })
   }
+  
 
 }
