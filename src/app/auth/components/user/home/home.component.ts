@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { windowToggle } from 'rxjs';
 import { ApiService } from 'src/app/auth/services/api.service';
 
 
@@ -22,15 +24,16 @@ class card{
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-
+  HomeForm !: FormGroup
+msg:string='';
   cardlist: card[] = [];
   displaylist: card[] = [];
-  constructor(public router:Router,private api:ApiService) {
-  }
+  constructor(public router:Router,private api:ApiService){}
 
   ngOnInit(): void {
+
     this.themes();
+
   }
 
   search():void {
@@ -39,8 +42,17 @@ export class HomeComponent implements OnInit {
     for(var i=0;i<this.displaylist.length;i++){
       if(this.displaylist[i].title.toLowerCase().match(searchuiInput.toLowerCase())){
         this.cardlist.push(this.displaylist[i]);
+ 
+       
       }
+      else{
+        this.msg="NO RESULTS FOUND";
+      }
+      
+      
     }
+   
+
   } 
 
   book():void{
@@ -53,6 +65,7 @@ export class HomeComponent implements OnInit {
     return this.api.viewtheme().subscribe(res => {
       this.cardlist = res;
       this.displaylist = res;
+      
     }).unsubscribe
   }
 

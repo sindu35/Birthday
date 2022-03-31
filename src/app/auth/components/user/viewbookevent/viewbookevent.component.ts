@@ -40,7 +40,7 @@ export class ViewbookeventComponent implements OnInit {
   onedit(row:any)
   {
     this.dialog.open(EditComponent,{
-      width:'30%',
+      width:'60%',
       data:row,
 
     }).afterClosed().subscribe(val=>{

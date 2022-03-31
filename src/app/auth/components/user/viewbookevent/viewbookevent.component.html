@@ -3,7 +3,7 @@
 <table class="table table-stripped table-responsive table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>ID</th>
+          
             <th>Event Name</th>
             <th>Time</th>
             <th>Date</th>
@@ -14,12 +14,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let row of ed">
-            <td>{{row.id}}</td>
-            <td>{{row.eventName}}</td>
-            <td>{{row.eventTime }}</td>
+           
+            <td>{{row.eventName |  uppercase}}</td>
+            <td>{{row.eventTime}}</td>
             <td>{{row.eventDate | date}}</td>
         
-            <td>{{row.total}}</td>
+            <td>{{row.total | currency}}</td>
             
             <td><button mat-icon-button color="primary"  (click)="onedit(row)"><mat-icon>edit</mat-icon></button></td>
 

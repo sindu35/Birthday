@@ -1,24 +1,27 @@
 <app-nagivation></app-nagivation>
 <br>
-
+<form [formGroup]="HomeForm">
 <div class="container">
 
     <div class="boxone ">
     
     <div id="search-box">
-      <input type="search" class="form-control"
-      id="Search" placeholder="Search here" >
+      
+    
+      <input   type="search" class="form-control" id="Search" placeholder="Search here" >
       <button id="SearchEventButton" class="btn btn-danger" (click)="search()">Search</button>
        
     </div>
     </div>
-    
+   
     
     <div class="boxtwo">
+     
           <div class="card" *ngFor="let card of cardlist">
             <img src={{card.img}} class="card-img-top" alt="...">
             <div class="con">
               <div class="d-flex flex-column">
+              
                 <h2 class="card-title">{{card.title}}</h2>
                 <h3 class="card-text">Place:{{card.address}}</h3>
                 <a class="btn btn-outline-success my-2 my-sm-0" id={{card.id}} role="button" (click) = book()>Book</a>
@@ -28,9 +31,11 @@
         
 
     </div>
+   
 </div>
 
-
+<div id="result" style="text-align: center;color:black;">{{msg |  uppercase}}</div>
+</form>
 
    
     

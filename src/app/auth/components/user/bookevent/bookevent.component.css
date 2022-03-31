@@ -10,7 +10,7 @@
   float:left;
   
   width:550px;
-  height:280px;
+  height:350px;
   padding:5px;
   background-color:white; 
   border:solid black;
@@ -27,6 +27,12 @@
 .container .row{
   padding:52px;
 }
+mat-form-field{
+  width:100%
+}
+
+
+
 input[type=text]:focus, input[type=password]:focus,input[type=email]:focus,input[type=tel]:focus,input[type=time]:focus{
   background-color: #ddd;
   outline: none;
@@ -69,7 +75,7 @@ h2{
     float:left;
     
     width:550px;
-    height:360px;
+    height:440px;
     padding:5px;
     background-color:white; 
     border:solid black;
@@ -124,4 +130,7 @@ h2{
   h2{
     padding:2px;
   }
-  
+  Multi{
+    margin-top: 50px;
+    padding-top: 20px;
+  }

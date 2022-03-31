@@ -3,7 +3,8 @@ import { AbstractControl, FormBuilder,FormGroup, Validators } from '@angular/for
 import { Events } from 'src/app/auth/classes/events';
 import { ApiService } from 'src/app/auth/services/api.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-
+import { max } from 'rxjs';
+import { Router } from '@angular/router';
 
 class addons{
  name:string='';
@@ -38,12 +39,15 @@ class nonveg{
   styleUrls: ['./bookevent.component.css']
 })
 export class BookeventComponent implements OnInit {
+  minDate=new Date();
+  maxDate=new Date(2023,3,10);
 
   formValue !: FormGroup
   ei:Events =new Events();
  
+ 
 
-  constructor(public formbuilder:FormBuilder,public api:ApiService) { 
+  constructor(public formbuilder:FormBuilder,public api:ApiService,public router:Router) { 
     
   }
   selectedItems = [];
@@ -51,7 +55,7 @@ export class BookeventComponent implements OnInit {
   d: addons[] = [];
   v: veg[]=[];
   n: nonveg[]=[];
-  selectedv:veg[]=[];
+  
   nvtotal:number=0;
 vtotal:number=0;
  total:number=0;
@@ -73,7 +77,9 @@ quantityNonVeg:number=0;
       idField: 'item_id',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      allowSearchFilter: true
+      allowSearchFilter: true,
+      closeDropDownOnSelection:true,
+    
     };
     this.formValue=this.formbuilder.group({
       eventName:['',Validators.required],
@@ -82,7 +88,7 @@ quantityNonVeg:number=0;
       userMobilenumber:['',Validators.required],
       userEmailId:['',Validators.required],
       eventAddress:['',Validators.required],
-
+      noofpeople:['',Validators.required,],
       eventDate:['',Validators.required],
       eventTime:['',Validators.required],
       quantityVeg:['',Validators.required],
@@ -93,13 +99,14 @@ quantityNonVeg:number=0;
  
 
   eventDetails(){
-   if(this.formValue.valid){
+  if(this.formValue.valid){
     this.ei.eventName=this.formValue.value.eventName;
     this.ei.userName=this.formValue.value.userName;
     this.ei.userAddress=this.formValue.value.userAddress;
     this.ei.userMobilenumber=this.formValue.value.userMobilenumber;
     this.ei.userEmailId=this.formValue.value.userEmailId;
     this.ei.eventAddress=this.formValue.value.eventAddress;
+    this.ei.noofpeople=this.formValue.value.noofpeople;
     this.ei.eventDate=this.formValue.value.eventDate;
     this.ei.eventTime=this.formValue.value.eventTime;
     this.ei.quantityVeg=this.formValue.value.quantityVeg;
@@ -109,7 +116,11 @@ quantityNonVeg:number=0;
     this.ei.total=this.total+this.ei.gettotal(this.ei.quantityNonVeg,this.ei.quantityVeg,this.ei.nvtotal,this.ei.vtotal);
     this.api.bookevent(this.ei).subscribe(res=>{
       console.log(res);
+      this.router.navigate(['/user/getBookedTheme']);
       alert("event booked");
+      
+      this.vtotal=0;
+      this.nvtotal=0;
       this.formValue.reset();  
     },
     err=>{
@@ -117,9 +128,9 @@ quantityNonVeg:number=0;
     })
   }
   else{
-  
-    alert("please enter all the details");
+    alert("enter all values");
   }
+  
 }
    getadd()
    {
@@ -128,6 +139,7 @@ quantityNonVeg:number=0;
    getveg()
    {
     return this.api.veg().subscribe(res=>{this.v=res});
+
    }
    getnonveg()
    {
@@ -185,10 +197,11 @@ quantityNonVeg:number=0;
      this.total=this.total-price; 
       }
   }
-  
-  get f(): { [key: string]: AbstractControl } {
-    return this.formValue.controls;
-  } 
+  errorHandling(control:string,error:string){
+    return this.formValue.controls[control].hasError(error);
+   
+    }
+ 
   
 
 }

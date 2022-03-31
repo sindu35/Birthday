@@ -26,6 +26,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { EditComponent } from './components/user/edit/edit.component';
 import {MatDialog} from '@angular/material/dialog';
+
 @NgModule({ 
   declarations: [
     LoginComponent,
@@ -55,7 +56,7 @@ import {MatDialog} from '@angular/material/dialog';
     MatInputModule ,
     HttpClientModule,
     MdbModalModule,
-
+    
     
 
   ]

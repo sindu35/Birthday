@@ -4,57 +4,85 @@
 <div class="container">
     <div class="row" >
    
-   
+        
     <div id="st-box" class="col col-5">
         <h2>Applicant Details</h2>
-            <div class="form-group">
-                <label for="eventname"></label>
-                <input type="text" class="form-control" id="eventName" placeholder="Name: SS birthday event" formControlName="eventName">
-            </div>
-            <div class="form-group">
-            <label for="applicantname"></label>
-                <input type="text" class="form-control"
-                id="applicantName" placeholder="Enter applicant name" formControlName="userName" >
-           </div>
-           <div class="form-group">
-            <label for="applicantaddress"></label>
-                <input type="text" class="form-control"
-            id="applicantAddress" placeholder="Enter applicant address" formControlName="userAddress">
-            </div>
-           <div class="form-group">
-            <label for="applicantMobileNo"></label>
-                <input type="tel" class="form-control"
-                id="applicantMobileNo" placeholder="Enter applicant mobile no" formControlName="userMobilenumber">
-            </div>
-           <div class="form-group">
-            <label for="applicantemailid"></label>
-                <input type="text" class="form-control"
-                id="applicantEmailid" placeholder="Enter applicant email id" formControlName="userEmailId">
-            </div>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>eventname</mat-label>
+            <input matInput  formControlName="eventName">
+            <mat-error *ngIf="errorHandling('eventName','required')"><strong>Event Name is required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>applicantname</mat-label>
+                <input matInput  formControlName="userName">
+                <mat-error *ngIf="errorHandling('userName','required')"><strong>UserName is required</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>applicantaddress</mat-label>
+                    <input matInput   formControlName="userAddress">
+                    <mat-error *ngIf="errorHandling('userAddress','required')"><strong>UserAddress is required</strong></mat-error>
+                    </mat-form-field>
+          
+                    <mat-form-field class="example-full-width" appearance="fill">
+
+                        <mat-label>applicantMobileNo</mat-label>
+                        <input matInput   formControlName="userMobilenumber" required pattern="\d{10}">
+                        <mat-error *ngIf="errorHandling('userMobilenumber','required')"><strong>Mobilenumber is required</strong></mat-error>
+                       
+                        <mat-error *ngIf="errorHandling('userMobilenumber','pattern')"><strong>Mobilenumber should be number only</strong></mat-error>
+
+                        </mat-form-field>
+                
+                        <mat-form-field class="example-full-width" appearance="fill" >
+                            <mat-label>applicantemailid</mat-label>-
+                    <input matInput   formControlName="userEmailId" pattern="/^[a-zA-Z0-9.!#$%&’+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/">
+                            <mat-error *ngIf="errorHandling('userEmailId','required')"><strong>Email is required</strong></mat-error>
+                            <mat-error *ngIf="errorHandling('userEmailId','pattern')"><strong>Email should be of pattern example: shruthimedoji@gmail.com</strong></mat-error>
+                            </mat-form-field>
+                                     
+         
+          
        
     </div>
-    <div class="col"></div>
+     <div class="col"></div>
         <div id="nd-box" class="col col-5">
-        
-           <div class="form-group">
-               <label for="applicantemailid"></label>
-                <input type="text" class="form-control"
-                id="eventAddress" placeholder="Address:Coimbatore" formControlName="eventAddress">
-            </div>
-            <div class="form-group"><label for="noofpeople"></label>
-                <input type="tel" class="form-control"
-                id="noOfPeople" placeholder="Enter the number of people"></div>
-            <div class="form-group"><label>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate">
+    
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>eventAddress</mat-label>
+                <input matInput   formControlName="eventAddress">
+                <mat-error *ngIf="errorHandling('eventAddress','required')"><strong>eventAddress required</strong></mat-error>
+                </mat-form-field>
+                         
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>noofpeople</mat-label>
+                    <input matInput  type="number" formControlName="noofpeople" min="1">
+                    <mat-error *ngIf="errorHandling('noofpeople','required')"><strong>noofpeople required</strong></mat-error>
+                    <mat-error *ngIf="errorHandling('noofpeople','min')"><strong>minimum  No.Of people should be greater than 1</strong></mat-error>
+                    </mat-form-field>
+          
+           
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" formControlName="eventDate" >
+
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker ></mat-datepicker>
-                </label>
-            </div>
-            <div class="form-group"><label>
-                <input type="time" id="input" name="appt"  class="form-control" min="09:00" max="18:00" required formControlName="eventTime">
-                <label for="input">Choose your time</label>
-                </label>
-            </div>     
+                <mat-error *ngIf="errorHandling('eventDate','required')"><strong>eventDate required</strong></mat-error>
+                </mat-form-field>
+
+              
+
+                
+                <mat-form-field class="example-full-width" appearance="fill">
+
+                    <mat-label>Event Time</mat-label>
+                    <input matInput type="time" placeholder="Choose your time"   formControlName="eventTime" >
+                    <mat-error *ngIf="errorHandling('eventTime','required')"><strong>eventTime required</strong></mat-error>
+                  </mat-form-field>
+                  
+              
         </div>
     
 <div class="w-100"></div>
@@ -78,7 +106,7 @@
                         </ng-multiselect-dropdown>
             </div>
          
-
+           
             <div class="form-group" >
                 <label for="exampleInputEmail1"></label>
                         <ng-multiselect-dropdown
@@ -95,16 +123,24 @@
                         </ng-multiselect-dropdown>
 
             </div>
-
-
-            <div class="form-group">
-                <label for="quantityofveg"></label>
-                <input type="tel" class="form-control" id="quantityOfVeg" placeholder="Enter quantity of Veg items" formControlName="quantityVeg">
-            </div>
-            <div class="form-group"><label for="quantityofnonveg"></label>
-                <input type="tel" class="form-control" id="quantityOfNonVeg" placeholder="Enter quantity of Non Veg items" formControlName="quantityNonVeg">
-            </div>
    
+    
+
+   <br><br/>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>quantityofveg</mat-label>
+                <input matInput  type="number" formControlName="quantityVeg" min="0">
+                <mat-error *ngIf="errorHandling('quantityVeg','required')"><strong>quantityVeg required</strong></mat-error>
+                </mat-form-field>
+
+                
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>quantityofnonveg</mat-label>
+                    <input matInput  type="number" formControlName="quantityNonVeg" min="0">
+                    <mat-error *ngIf="errorHandling('quantityNonVeg','required')"><strong>quantityNonVeg required</strong></mat-error>
+                    </mat-form-field>
+   
+  
     </div>
 
     <div class="col"></div>

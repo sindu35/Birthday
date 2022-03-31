@@ -1,3 +1,28 @@
 mat-form-field{
-    width:100%;
-}
+    width:30%;
+    padding-right: 8px;
+}#ra-box {
+    float:left;
+    
+     width:300px;
+     height:220px;
+     padding:5px;
+     background-color:white;
+     border:solid black;
+     margin-bottom: 30px;
+    
+   }
+
+#nf-box {
+    float:left;
+    margin-right: 100px;
+    width:450px;
+    height:440px;
+    padding:5px;
+    background-color:white; 
+    border:solid black;
+    
+  }
+  button{
+      float:bottom;
+  }
